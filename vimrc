@@ -6,6 +6,8 @@ command! -nargs=1 LoardScript  execute("so " .. home .. "/" .. <args>)
 
 # ------------------------------plugin------------------
 call plug#begin('~/.vim/plugged')
+# 美化
+Plug 'whatyouhide/gotham'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 # 字典
 Plug 'skywind3000/vim-dict'
@@ -43,6 +45,9 @@ Plug 'dense-analysis/ale'
 call plug#end()
 
 
+# -----------------------------config.space-vim-dark---------------------------------
+  colorscheme gotham256
+
 # -----------------------------config.are---------------------------------
 
 g:ale_linters_explicit = 1
@@ -54,13 +59,17 @@ g:ale_lint_on_text_changed = 'normal'
 g:ale_lint_on_insert_leave = 1
 g:airline#extensions#ale#enabled = 1
 
-g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+g:ale_c_gcc_options = '-Wall -O2 -std=c11'
 g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
 g:ale_c_cppcheck_options = ''
 g:ale_cpp_cppcheck_options = ''
 
+g:ale_linters = {
+	'rust': ['analyzer']
+}
+
 # -----------------------------config.nerdtree---------------------------------
-  var NERDTreeShowHidden = 1
+var NERDTreeShowHidden = 1
 
 
 
@@ -71,6 +80,7 @@ g:coc_global_extensions = [
 	'coc-vimlsp',
 	'coc-json',
 	'coc-clangd',
+	'coc-rust-analyzer',
 	]
 
 # 允许coc在为保存的情况下跳转，通过buffer实现
@@ -384,6 +394,9 @@ set wildmode=longest:list,full
 
 # 自动切换工作目录
 set autochdir
+
+# 开启真彩色
+set termguicolors
 
 # ---------------maping------------------------------------------
 
