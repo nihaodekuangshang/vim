@@ -42,13 +42,15 @@ Plug 'skywind3000/gutentags_plus'
 Plug 'skywind3000/vim-preview'
 # 语义检查
 Plug 'dense-analysis/ale'
+
 call plug#end()
 
+   
 
-# -----------------------------config.space-vim-dark---------------------------------
+# -----------------------------config.colorscheme---------------------------------
   colorscheme gotham256
 
-# -----------------------------config.are---------------------------------
+  # -----------------------------config.are---------------------------------
 
 g:ale_linters_explicit = 1
 g:ale_completion_delay = 500
@@ -107,16 +109,16 @@ set signcolumn=yes
 # " no select by `"suggest.noselect": true` in your configuration file
 # " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 # " other plugin before putting this into your config
- inoremap <silent><expr> <TAB>
-       \ coc#pum#visible() ? coc#pum#next(1) :
-       \ CheckBackspace() ? "\<Tab>" :
-       \ coc#refresh()
+# def CheckBackspace(): bool
+#    var col = col('.') - 1
+#    return !col || getline('.')[col - 1]  =~# '\s'
+# enddef
+# inoremap <silent><expr> <TAB>
+#        coc#pum#visible() ? coc#pum#next(1) :
+#        CheckBackspace() ? "\<Tab>" :
+#        coc#refresh()
  inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
-def CheckBackspace() 
-   var col = col('.') - 1
-   return !col || getline('.')[col - 1]  =~# '\s'
-enddef
 # 按回车选择
 # " Make <CR> to accept selected completion item or notify coc.nvim to format
 # " <C-g>u breaks current undo, please make your own choice
@@ -419,3 +421,5 @@ nnoremap <silent> <leader>pb <cmd>AsyncTask project-build <CR>
 
 nnoremap <silent> <leader>pr <cmd>AsyncTask project-run <CR>
 
+tnoremap <silent> <ESC>   <C-\><C-n>
+nnoremap <silent> <leader>te :ter<CR>
