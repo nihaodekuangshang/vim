@@ -83,6 +83,7 @@ g:coc_global_extensions = [
 	'coc-json',
 	'coc-clangd',
 	'coc-rust-analyzer',
+	'coc-toml',
 	]
 
 # 允许coc在为保存的情况下跳转，通过buffer实现
@@ -296,7 +297,8 @@ $GTAGSCONF = '/usr/local/share/gtags/gtags.conf'
 
 # -----------------------------config.vim-auto-popmenu--------------------------
 # 设定需要生效的文件类型，如果是 "*" 的话，代表所有类型
-g:apc_enable_ft = {'text': '1', 'markdown': '1', 'php': '1'}
+g:apc_enable_ft = {'text': '1', 'markdown': '1', 'php': '1', 's': '1', 'S': '1',
+	'asm': '1', 'ld': '1'}
 
 # 设定从字典文件以及当前打开的文件里收集补全单词，详情看 ':help cpt'
 set cpt=.,k,w,b
@@ -423,3 +425,35 @@ nnoremap <silent> <leader>pr <cmd>AsyncTask project-run <CR>
 
 tnoremap <silent> <ESC>   <C-\><C-n>
 nnoremap <silent> <leader>te :ter<CR>
+
+
+
+nnoremap <silent> <leader>bd :bd<CR>
+nnoremap <silent> <leader>bn :bn<CR>
+nnoremap <silent> <leader>bp :bp<CR>
+nnoremap <silent> <leader>bf :bf<CR>
+nnoremap <silent> <leader>bl :bl<CR>
+nnoremap <silent> <leader>1 :buffer 1<CR>
+nnoremap <silent> <leader>2 :buffer 2<CR>
+nnoremap <silent> <leader>3 :buffer 3<CR>
+nnoremap <silent> <leader>4 :buffer 4<CR>
+nnoremap <silent> <leader>5 :buffer 5<CR>
+nnoremap <silent> <leader>6 :buffer 6<CR>
+nnoremap <silent> <leader>7 :buffer 7<CR>
+nnoremap <silent> <leader>8 :buffer 8<CR>
+nnoremap <silent> <leader>9 :buffer 9<CR>
+
+
+nnoremap <silent> <leader>tc :tabclose<CR>
+nnoremap <silent> <leader>tn :tabnext<CR>
+nnoremap <silent> <leader>tp :tabprevious<CR>
+nnoremap <silent> <leader>t1 :tabnext 1<CR>
+nnoremap <silent> <leader>t2 :tabnext 2<CR>
+nnoremap <silent> <leader>t3 :tabnext 3<CR>
+nnoremap <silent> <leader>t4 :tabnext 4<CR>
+nnoremap <silent> <leader>t5 :tabnext 5<CR>
+nnoremap <silent> <leader>t6 :tabnext 6<CR>
+nnoremap <silent> <leader>t7 :tabnext 7<CR>
+nnoremap <silent> <leader>t8 :tabnext 8<CR>
+nnoremap <silent> <leader>t9 :tabnext 9<CR>
+
