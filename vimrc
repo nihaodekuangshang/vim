@@ -43,9 +43,13 @@ Plug 'skywind3000/vim-preview'
 # 语义检查
 Plug 'dense-analysis/ale'
 
+Plug 'rust-lang/rust.vim'
+
 call plug#end()
 
    
+# -----------------------------config.rustfmt---------------------------------
+g:rustfmt_autosave = 1
 
 # -----------------------------config.colorscheme---------------------------------
   colorscheme gotham256
@@ -328,7 +332,7 @@ g:asyncrun = 6
 
 
 # 如何确定根目录
-g:asyncrun_rootmarks = ['.git', '.svn', '.root', '.project', '.hg']
+g:asyncrun_rootmarks = ['.root', '.project', '.hg']
 
 
 # 当output为终端时，在下方打开内置终端
@@ -349,6 +353,8 @@ hi TabSpace  guifg=darkgrey ctermfg=darkgrey
 match TabSpace /\t\| /
 
 syntax on
+filetype plugin  indent on
+
 
 set showmode
 set showcmd
