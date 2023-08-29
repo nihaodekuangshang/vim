@@ -88,6 +88,7 @@ g:coc_global_extensions = [
 	'coc-clangd',
 	'coc-rust-analyzer',
 	'coc-toml',
+	'coc-sh',
 	]
 
 # 允许coc在为保存的情况下跳转，通过buffer实现
@@ -407,6 +408,9 @@ set autochdir
 
 # 开启真彩色
 set termguicolors
+
+#高亮搜索区域
+set hlsearch
 
 # ---------------maping------------------------------------------
 

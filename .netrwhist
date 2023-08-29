@@ -1,3 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/cron'
+let g:netrw_dirhist_6='/home/cron/.zsh'
+let g:netrw_dirhist_5='/home/cron/Code/Rust/rtcp/src'
+let g:netrw_dirhist_4='/home/cron/Code/Rust/rCore-Tutorial-v3/os/src'
+let g:netrw_dirhist_3='/home/cron/Code/Rust/rCore-Tutorial-v3/os'
+let g:netrw_dirhist_2='/home/cron/Code/Rust/rCore-Tutorial-v3'
 let g:netrw_dirhist_1='/home/cron/Code/Rust/Ruos/.cargon'
