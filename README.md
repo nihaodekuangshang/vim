@@ -14,7 +14,7 @@
 # 安装过程：
 
 1. `git clone  https://github.com/nihaodekuangshang/vim.git  ~/.vim`
-2. 执行`PluginIstall`
+2. 执行`PlugInstall`
 
 3. ```
    cd ~/.vim/plugged/coc.nvim/ 
