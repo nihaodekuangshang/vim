@@ -1,4 +1,4 @@
-###使用vim-plug
+### 使用vim-plug
 # 前置
 
 1.NERDFonts
