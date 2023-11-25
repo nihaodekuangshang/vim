@@ -45,6 +45,8 @@ Plug 'dense-analysis/ale'
 
 Plug 'rust-lang/rust.vim'
 
+Plug 'git@github.com:vim-scripts/asmx86.git'
+
 call plug#end()
 
    
@@ -355,6 +357,7 @@ match TabSpace /\t\| /
 
 syntax on
 filetype plugin  indent on
+filetype on
 
 
 set showmode
