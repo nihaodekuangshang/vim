@@ -44,8 +44,13 @@ Plug 'skywind3000/vim-preview'
 Plug 'dense-analysis/ale'
 
 Plug 'rust-lang/rust.vim'
+# On-demand lazy load
+Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
 
-Plug 'git@github.com:vim-scripts/asmx86.git'
+# To register the descriptions when using the on-demand load feature,
+# use the autocmd hook to call which_key#register(), e.g., register for the Space key:
+# autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
+
 
 call plug#end()
 
@@ -91,6 +96,7 @@ g:coc_global_extensions = [
 	'coc-rust-analyzer',
 	'coc-toml',
 	'coc-sh',
+	'coc-deno',
 	]
 
 # 允许coc在为保存的情况下跳转，通过buffer实现
@@ -341,6 +347,46 @@ g:asyncrun_rootmarks = ['.root', '.project', '.hg']
 # 当output为终端时，在下方打开内置终端
 g:asynctasks_term_pos = 'bottom'
 
+# -------------------------------config.asyn---------------------------------
+# By default timeoutlen is 1000 ms
+set timeoutlen=500
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+
+g:which_key_map = {}
+g:which_key_map['t'] = {
+      \ 'name': '+tab +terminal +tree',
+      \ '1': [':tabnext 1', 'open tab 1'],
+      \ '2': [':tabnext 2', 'open tab 2'],
+      \ '3': [':tabnext 3', 'open tab 3'],
+      \ '4': [':tabnext 4', 'open tab 4'],
+      \ '5': [':tabnext 5', 'open tab 5'],
+      \ '6': [':tabnext 6', 'open tab 6'],
+      \ '7': [':tabnext 7', 'open tab 7'],
+      \ '8': [':tabnext 8', 'open tab 8'],
+      \ '9': [':tabnext 9', 'open tab 9'],
+      \ 'n': [':tabnext', 'open next tab'],
+      \ 'p': [':tabprevious', 'open previous tab'],
+      \ 'c': [':tabclose', 'close tab'],
+      \ 't': ['<cmd>NERDTreeToggle', 'open file tree'],
+      \ 'e': [':ter', 'open terminal'],
+      \ }
+g:which_key_map['p'] = {
+      \ 'name': '+plug +project',
+      \ 'i': ['<cmd>PlugInstall<CR>', 'install plugin'],
+      \ 'u': ['<cmd>PlugUpdate<CR>', 'update plug'],
+      \ 'c': ['<cmd>PlugClean<CR>', 'clean plug'],
+      \ 'b': ['<cmd>AsyncTask project-build <CR', 'build with glob config'],
+      \ 'r': ['<cmd>AsyncTask project-run <CR>',  'run with glob config']
+      \ }
+g:which_key_map['f'] = {
+      \ 'name': '+file',
+      \ 'b': ['<cmd>AsyncTask file-build <CR', 'build with project config'],
+      \ 'r': ['<cmd>AsyncTask file-run <CR>',  'run with project config'],
+      \ 'e': ['<cmd>AsyncTaskEdit <CR>',  'edit the project config']
+      \ }
+call which_key#register('<Space>', "g:which_key_map")
+
 # -------------------------------basic-------------------------------------------
 
 # 关闭vi兼容性
@@ -369,6 +415,8 @@ set mouse=
 
 # 开启自动缩进
 set autoindent
+# 开启自动保存
+set autowrite
 #按下 Tab 键时，Vim 显示的空格数 
 set tabstop=4
 # 在文本上按下>>（增加一级缩进）、<<（取消一级缩进）或者==（取消全部缩进）时，每一级的字符数。
@@ -419,7 +467,6 @@ set hlsearch
 
 g:mapleader = " "
 
-nmap <leader>tt <cmd>NERDTreeToggle<CR>
 nnoremap <silent> <leader>cl <cmd>CocList marketplace<CR>
 
 
@@ -427,17 +474,20 @@ nnoremap <silent> <leader>pi <cmd>PlugInstall<CR>
 nnoremap <silent> <leader>pu <cmd>PlugUpdate<CR>
 nnoremap <silent> <leader>pc <cmd>PlugClean<CR>
 
-
-nnoremap <silent> <leader>fb <cmd>AsyncTask file-build <CR>
-
-nnoremap <silent> <leader>fr <cmd>AsyncTask file-run <CR>
-
 nnoremap <silent> <leader>pb <cmd>AsyncTask project-build <CR>
 
 nnoremap <silent> <leader>pr <cmd>AsyncTask project-run <CR>
 
+
+
+nnoremap <silent> <leader>fb <cmd>AsyncTask file-build <CR>
+
+nnoremap <silent> <leader>fr <cmd>AsyncTask file-run <CR>
+nnoremap <silent> <leader>fe <cmd>AsyncTaskEdit <CR>
+
+
+
 tnoremap <silent> <ESC>   <C-\><C-n>
-nnoremap <silent> <leader>te :ter<CR>
 
 
 
@@ -446,17 +496,36 @@ nnoremap <silent> <leader>bn :bn<CR>
 nnoremap <silent> <leader>bp :bp<CR>
 nnoremap <silent> <leader>bf :bf<CR>
 nnoremap <silent> <leader>bl :bl<CR>
-nnoremap <silent> <leader>1 :buffer 1<CR>
-nnoremap <silent> <leader>2 :buffer 2<CR>
-nnoremap <silent> <leader>3 :buffer 3<CR>
-nnoremap <silent> <leader>4 :buffer 4<CR>
-nnoremap <silent> <leader>5 :buffer 5<CR>
-nnoremap <silent> <leader>6 :buffer 6<CR>
-nnoremap <silent> <leader>7 :buffer 7<CR>
-nnoremap <silent> <leader>8 :buffer 8<CR>
-nnoremap <silent> <leader>9 :buffer 9<CR>
+nnoremap <silent> <leader>b1 :buffer 1<CR>
+nnoremap <silent> <leader>b2 :buffer 2<CR>
+nnoremap <silent> <leader>b3 :buffer 3<CR>
+nnoremap <silent> <leader>b4 :buffer 4<CR>
+nnoremap <silent> <leader>b5 :buffer 5<CR>
+nnoremap <silent> <leader>b6 :buffer 6<CR>
+nnoremap <silent> <leader>b7 :buffer 7<CR>
+nnoremap <silent> <leader>b8 :buffer 8<CR>
+nnoremap <silent> <leader>b9 :buffer 9<CR>
 
+g:which_key_map['b'] = {
+      \ 'name': '+buffer',
+      \ '1': [':buffer 1', 'open buffer 1'],
+      \ '2': [':buffer 2', 'open buffer 2'],
+      \ '3': [':buffer 3', 'open buffer 3'],
+      \ '4': [':buffer 4', 'open buffer 4'],
+      \ '5': [':buffer 5', 'open buffer 5'],
+      \ '6': [':buffer 6', 'open buffer 6'],
+      \ '7': [':buffer 7', 'open buffer 7'],
+      \ '8': [':buffer 8', 'open buffer 8'],
+      \ '9': [':buffer 9', 'open buffer 9'],
+      \ 'n': [':bn', 'open next buffer'],
+      \ 'p': [':bp', 'open previous buffer'],
+      \ 'f': [':bf', 'open first buffer'],
+      \ 'l': [':bl', 'open latest buffer'],
+      \ 'd': [':bd', 'delete buffer'],
+      \ }
 
+nmap <leader>tt <cmd>NERDTreeToggle<CR>
+nnoremap <silent> <leader>te :ter<CR>
 nnoremap <silent> <leader>tc :tabclose<CR>
 nnoremap <silent> <leader>tn :tabnext<CR>
 nnoremap <silent> <leader>tp :tabprevious<CR>
