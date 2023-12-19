@@ -1,4 +1,20 @@
 ### 使用vim-plug
+
+# 推荐使用编译安装的方式安装最新版vim
+`git clone https://github.com/vim/vim.git`
+更新本地的vim为最新版
+```
+cd vim
+git pull
+```
+构建和安装vim
+```
+cd vim/src
+make distclean  # if you build Vim before
+make
+sudo make install
+```
+
 # 前置
 
 1.NERDFonts
