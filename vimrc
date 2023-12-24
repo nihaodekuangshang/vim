@@ -1,7 +1,5 @@
 vim9script
 
-var home = fnamemodify('.', ':p:h')
-command! -nargs=1 LoardScript  execute("so " .. home .. "/" .. <args>)
 
 
 # ------------------------------plugin------------------
@@ -44,14 +42,15 @@ Plug 'skywind3000/vim-preview'
 Plug 'dense-analysis/ale'
 
 Plug 'rust-lang/rust.vim'
-# On-demand lazy load
-Plug 'liuchengxu/vim-which-key', { 'on': ['WhichKey', 'WhichKey!'] }
+# 按键提示
+Plug 'liuchengxu/vim-which-key'
 
 # To register the descriptions when using the on-demand load feature,
 # use the autocmd hook to call which_key#register(), e.g., register for the Space key:
 # autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
-
+#搜索文件函数
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
 call plug#end()
 
    
@@ -270,6 +269,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 # -----------------------------config.gutentags---------------------------------
 
+g:gutentags_define_advanced_commands = 1
 # gutentags 搜索工程目录的标志，当前文件路径向上递归直到碰到这些文件/目录名
 g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 
@@ -350,42 +350,73 @@ g:asynctasks_term_pos = 'bottom'
 # -------------------------------config.asyn---------------------------------
 # By default timeoutlen is 1000 ms
 set timeoutlen=500
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 
 g:which_key_map = {}
+g:which_key_map['b'] = {
+       'name': '+buffer',
+       '1': [':buffer 1', 'open buffer 1'],
+       '2': [':buffer 2', 'open buffer 2'],
+       '3': [':buffer 3', 'open buffer 3'],
+       '4': [':buffer 4', 'open buffer 4'],
+       '5': [':buffer 5', 'open buffer 5'],
+       '6': [':buffer 6', 'open buffer 6'],
+       '7': [':buffer 7', 'open buffer 7'],
+       '8': [':buffer 8', 'open buffer 8'],
+       '9': [':buffer 9', 'open buffer 9'],
+       'n': [':bn', 'open next buffer'],
+       'p': [':bp', 'open previous buffer'],
+       'f': [':bf', 'open first buffer'],
+       'l': [':bl', 'open latest buffer'],
+       'd': [':bd', 'delete buffer'],
+       }
+g:which_key_map['c'] = {
+       'name': '+tags coc',
+       'l': ['<cmd>CocList marketplace<CR>',  'open coc marketplace'],
+       }
+
+g:which_key_map['g'] = {
+       'name': '+Goto code',
+       'p': ['<Plug>(coc-diagnostic-prev)',  'goto previous error'],
+       'n': ['<Plug>(coc-diagnostic-next)',  'goto next error'],
+       'd': ['<Plug>(coc-definition)',  'goto symbol definition'],
+       'y': ['<Plug>(coc-type-definition)',  'goto type definition'],
+       'i': ['<Plug>(coc-implementation)',  'goto implementation'],
+       'r': ['<Plug>(coc-references)',  'goto symbol references'],
+       }
 g:which_key_map['t'] = {
-      \ 'name': '+tab +terminal +tree',
-      \ '1': [':tabnext 1', 'open tab 1'],
-      \ '2': [':tabnext 2', 'open tab 2'],
-      \ '3': [':tabnext 3', 'open tab 3'],
-      \ '4': [':tabnext 4', 'open tab 4'],
-      \ '5': [':tabnext 5', 'open tab 5'],
-      \ '6': [':tabnext 6', 'open tab 6'],
-      \ '7': [':tabnext 7', 'open tab 7'],
-      \ '8': [':tabnext 8', 'open tab 8'],
-      \ '9': [':tabnext 9', 'open tab 9'],
-      \ 'n': [':tabnext', 'open next tab'],
-      \ 'p': [':tabprevious', 'open previous tab'],
-      \ 'c': [':tabclose', 'close tab'],
-      \ 't': ['<cmd>NERDTreeToggle', 'open file tree'],
-      \ 'e': [':ter', 'open terminal'],
-      \ }
+       'name': '+tab +terminal +tree',
+       '1': [':tabnext 1', 'open tab 1'],
+       '2': [':tabnext 2', 'open tab 2'],
+       '3': [':tabnext 3', 'open tab 3'],
+       '4': [':tabnext 4', 'open tab 4'],
+       '5': [':tabnext 5', 'open tab 5'],
+       '6': [':tabnext 6', 'open tab 6'],
+       '7': [':tabnext 7', 'open tab 7'],
+       '8': [':tabnext 8', 'open tab 8'],
+       '9': [':tabnext 9', 'open tab 9'],
+       'n': [':tabnext', 'open next tab'],
+       'p': [':tabprevious', 'open previous tab'],
+       'c': [':tabclose', 'close tab'],
+       't': ['<cmd>NERDTreeToggle', 'open file tree'],
+       'e': [':ter', 'open terminal'],
+       }
 g:which_key_map['p'] = {
-      \ 'name': '+plug +project',
-      \ 'i': ['<cmd>PlugInstall<CR>', 'install plugin'],
-      \ 'u': ['<cmd>PlugUpdate<CR>', 'update plug'],
-      \ 'c': ['<cmd>PlugClean<CR>', 'clean plug'],
-      \ 'b': ['<cmd>AsyncTask project-build <CR', 'build with glob config'],
-      \ 'r': ['<cmd>AsyncTask project-run <CR>',  'run with glob config']
-      \ }
+       'name': '+plug +project',
+       'i': ['<cmd>PlugInstall<CR>', 'install plugin'],
+       'u': ['<cmd>PlugUpdate<CR>', 'update plug'],
+       'c': ['<cmd>PlugClean<CR>', 'clean plug'],
+       'b': ['<cmd>AsyncTask project-build <CR', 'build with glob config'],
+       'r': ['<cmd>AsyncTask project-run <CR>',  'run with glob config']
+       }
 g:which_key_map['f'] = {
-      \ 'name': '+file',
-      \ 'b': ['<cmd>AsyncTask file-build <CR', 'build with project config'],
-      \ 'r': ['<cmd>AsyncTask file-run <CR>',  'run with project config'],
-      \ 'e': ['<cmd>AsyncTaskEdit <CR>',  'edit the project config']
-      \ }
-call which_key#register('<Space>', "g:which_key_map")
+       'name': '+file',
+       'b': ['<cmd>AsyncTask file-build <CR', 'build with project config'],
+       'r': ['<cmd>AsyncTask file-run <CR>',  'run with project config'],
+       'e': ['<cmd>AsyncTaskEdit <CR>',  'edit the project config']
+       }
+which_key#register('<Space>', "g:which_key_map")
+
 
 # -------------------------------basic-------------------------------------------
 
@@ -466,8 +497,10 @@ set hlsearch
 # ---------------maping------------------------------------------
 
 g:mapleader = " "
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 nnoremap <silent> <leader>cl <cmd>CocList marketplace<CR>
+
 
 
 nnoremap <silent> <leader>pi <cmd>PlugInstall<CR>
@@ -480,10 +513,10 @@ nnoremap <silent> <leader>pr <cmd>AsyncTask project-run <CR>
 
 
 
-nnoremap <silent> <leader>fb <cmd>AsyncTask file-build <CR>
+nnoremap <silent> <leader>fb <cmd>AsyncTask file-build<CR>
 
-nnoremap <silent> <leader>fr <cmd>AsyncTask file-run <CR>
-nnoremap <silent> <leader>fe <cmd>AsyncTaskEdit <CR>
+nnoremap <silent> <leader>fr <cmd>AsyncTask file-run<CR>
+nnoremap <silent> <leader>fe <cmd>AsyncTaskEdit<CR>
 
 
 
@@ -506,23 +539,6 @@ nnoremap <silent> <leader>b7 :buffer 7<CR>
 nnoremap <silent> <leader>b8 :buffer 8<CR>
 nnoremap <silent> <leader>b9 :buffer 9<CR>
 
-g:which_key_map['b'] = {
-      \ 'name': '+buffer',
-      \ '1': [':buffer 1', 'open buffer 1'],
-      \ '2': [':buffer 2', 'open buffer 2'],
-      \ '3': [':buffer 3', 'open buffer 3'],
-      \ '4': [':buffer 4', 'open buffer 4'],
-      \ '5': [':buffer 5', 'open buffer 5'],
-      \ '6': [':buffer 6', 'open buffer 6'],
-      \ '7': [':buffer 7', 'open buffer 7'],
-      \ '8': [':buffer 8', 'open buffer 8'],
-      \ '9': [':buffer 9', 'open buffer 9'],
-      \ 'n': [':bn', 'open next buffer'],
-      \ 'p': [':bp', 'open previous buffer'],
-      \ 'f': [':bf', 'open first buffer'],
-      \ 'l': [':bl', 'open latest buffer'],
-      \ 'd': [':bd', 'delete buffer'],
-      \ }
 
 nmap <leader>tt <cmd>NERDTreeToggle<CR>
 nnoremap <silent> <leader>te :ter<CR>
