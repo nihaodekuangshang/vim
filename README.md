@@ -19,7 +19,11 @@ sudo make install
 
 1.NERDFonts
 
+[hasklig](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.1.1/Hasklig.zip)
+
 2.nodejs >14
+
+[教程](https://learn.microsoft.com/zh-cn/windows/dev-environment/javascript/nodejs-on-wsl)
 
 3.gtags
 
