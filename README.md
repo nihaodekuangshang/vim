@@ -29,9 +29,7 @@ sudo make install
 
 3.gtags
 
-linux配置文件位置 `/usr/local/share/gtags/gtags.conf`
-
-[gtags配置文件](https://github.com/namhyung/global/blob/master/gtags.conf)
+推荐编译安装 [下载地址](https://ftp.gnu.org/pub/gnu/global/)
 
 4.Pygments
 
