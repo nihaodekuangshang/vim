@@ -49,8 +49,11 @@ Plug 'liuchengxu/vim-which-key'
 # use the autocmd hook to call which_key#register(), e.g., register for the Space key:
 # autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
+
 #搜索文件函数
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+
+
 call plug#end()
 
    
