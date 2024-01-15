@@ -13,6 +13,7 @@ Plug 'skywind3000/vim-dict'
 # keymap 待配置
 Plug 'skywind3000/vim-auto-popmenu'
 # 行级格式化
+# 使用的话，只需要 Vim 支持 +python3 特性，且 Python 安装 autopep8 模块即可
 Plug 'skywind3000/vim-rt-format'
 # build-run 任务系统
 # keymap 待配置
@@ -452,7 +453,7 @@ set autoindent
 # 开启自动保存
 set autowrite
 #按下 Tab 键时，Vim 显示的空格数 
-set tabstop=4
+set tabstop=8
 # 在文本上按下>>（增加一级缩进）、<<（取消一级缩进）或者==（取消全部缩进）时，每一级的字符数。
 set shiftwidth=4
 

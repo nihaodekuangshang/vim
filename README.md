@@ -31,9 +31,11 @@ sudo make install
 
 推荐编译安装 [下载地址](https://ftp.gnu.org/pub/gnu/global/)
 
-4.Pygments
+4.python模块
 
-`pip install Pygments`
+* Pygments
+
+* autopep8
 
 
 # 安装过程：
