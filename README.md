@@ -12,7 +12,8 @@ git pull
 ```
 cd vim/src
 make distclean  # if you build Vim before
-./configure --enable-python3interp=yes
+export LDFLAGS="-rdynamic"                    解决socket报错
+./configure --enable-python3interp=yes        启用python3支持
 make
 sudo make install
 ```
