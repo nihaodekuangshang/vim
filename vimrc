@@ -51,8 +51,9 @@ Plug 'liuchengxu/vim-which-key'
 # autocmd! User vim-which-key call which_key#register('<Space>', 'g:which_key_map')
 
 
-#搜索文件函数
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+
+# 为c系语言提供补全
+Plug 'ycm-core/YouCompleteMe'
 
 
 call plug#end()
@@ -95,7 +96,6 @@ g:coc_global_extensions = [
 	'coc-marketplace', 
 	'coc-vimlsp',
 	'coc-json',
-	'coc-clangd',
 	'coc-rust-analyzer',
 	'coc-toml',
 	'coc-sh',
@@ -351,7 +351,7 @@ g:asyncrun_rootmarks = ['.root', '.project', '.hg']
 # 当output为终端时，在下方打开内置终端
 g:asynctasks_term_pos = 'bottom'
 
-# -------------------------------config.asyn---------------------------------
+# -------------------------------config.which_key_map---------------------------
 # By default timeoutlen is 1000 ms
 set timeoutlen=500
 
@@ -421,9 +421,17 @@ g:which_key_map['f'] = {
        }
 which_key#register('<Space>', "g:which_key_map")
 
+#--------------------------config.YouCompleteMe-----------------------------------
+#
+
+g:ycm_enable_inlay_hints = 1
+g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'	#补全配置文件位置
+g:ycm_server_python_interpreter = '/usr/bin/python'		#python位置
+g:ycm_seed_identifiers_with_syntax = 1                         #语法关键字补全
 
 # -------------------------------basic-------------------------------------------
 
+set runtimepath+=/usr/share/vim/vimfiles/
 # 关闭vi兼容性
 set nocompatible
 # 允许在自动缩进、换行符、插入开始位置退格
@@ -455,7 +463,7 @@ set autowrite
 #按下 Tab 键时，Vim 显示的空格数 
 set tabstop=8
 # 在文本上按下>>（增加一级缩进）、<<（取消一级缩进）或者==（取消全部缩进）时，每一级的字符数。
-set shiftwidth=4
+set shiftwidth=8
 
 # 设置光标行高亮
 set cursorline

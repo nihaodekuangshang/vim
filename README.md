@@ -34,9 +34,11 @@ sudo make install
 
 4.python模块
 
-* Pygments
+* Pygments       为gtags原生不支持的类型添加支持
 
-* autopep8
+* autopep8      文件格式化
+
+* compiledb     生成YCM配置文件
 
 
 # 安装过程：
@@ -44,9 +46,9 @@ sudo make install
 1. `git clone  https://github.com/nihaodekuangshang/vim.git  ~/.vim`
 2. 执行`PlugInstall`
 
-3. ```
-   cd ~/.vim/plugged/coc.nvim/ 
-   nvm ci
+3. ```shell
+   cd ~/.vim/plugged/YouCompleteMe/
+   python3 install.py --clangd-completer   //通过clangd启用YCM对c族语言的支持
    ```
 
 
