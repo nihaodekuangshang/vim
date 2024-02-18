@@ -4,6 +4,7 @@ vim9script
 
 # ------------------------------plugin------------------
 call plug#begin('~/.vim/plugged')
+g:plug_url_format = 'git@github.com:%s.git'
 # 美化
 Plug 'whatyouhide/gotham'
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
@@ -53,7 +54,7 @@ Plug 'liuchengxu/vim-which-key'
 
 
 # 为c系语言提供补全
-Plug 'ycm-core/YouCompleteMe'
+#Plug 'ycm-core/YouCompleteMe'
 
 
 call plug#end()
@@ -82,7 +83,7 @@ g:ale_c_cppcheck_options = ''
 g:ale_cpp_cppcheck_options = ''
 
 g:ale_linters = {
-	'rust': ['analyzer']
+	'asm': ['gcc'],
 }
 
 # -----------------------------config.nerdtree---------------------------------
@@ -93,6 +94,7 @@ var NERDTreeShowHidden = 1
 # -----------------------------config.coc--------------------------------------
 
 g:coc_global_extensions = [
+	'coc-clangd',
 	'coc-marketplace', 
 	'coc-vimlsp',
 	'coc-json',
@@ -424,10 +426,11 @@ which_key#register('<Space>', "g:which_key_map")
 #--------------------------config.YouCompleteMe-----------------------------------
 #
 
-g:ycm_enable_inlay_hints = 1
-g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'	#补全配置文件位置
-g:ycm_server_python_interpreter = '/usr/bin/python'		#python位置
-g:ycm_seed_identifiers_with_syntax = 1                         #语法关键字补全
+#g:ycm_enable_inlay_hints = 1
+#g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'	#补全配置文件位置
+#g:ycm_server_python_interpreter = '/usr/bin/python'		#python位置
+#g:ycm_seed_identifiers_with_syntax = 1                         #语法关键字补全
+#nnoremap <silent> <leader>yg :YcmComplete Goto<CR>
 
 # -------------------------------basic-------------------------------------------
 
