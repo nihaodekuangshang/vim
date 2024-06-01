@@ -1,5 +1,6 @@
 .*.un~
-/plugged
+tmp/
+bundles/
 .root/
 .netrwhist
 .root
