@@ -462,16 +462,16 @@ if index(g:bundle_group, 'leaderf') >= 0
 
 		# 模糊匹配忽略扩展名
 		g:Lf_WildIgnore = {
-					\ 'dir': ['.svn','.git','.hg'],
-					\ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-					\ }
+					 'dir': ['.svn', '.git', '.hg'],
+					 'file': ['*.sw?', '~$*', '*.bak', '*.exe', '*.o', '*.so', '*.py[co]']
+					 }
 
 		# MRU 文件忽略扩展名
 		g:Lf_MruFileExclude = ['*.so', '*.exe', '*.py[co]', '*.sw?', '~$*', '*.bak', '*.tmp', '*.dll']
 		g:Lf_StlColorscheme = 'powerline'
 
 		# 禁用 function/buftag 的预览功能，可以手动用 p 预览
-		g:Lf_PreviewResult = {'Function':0, 'BufTag':0}
+		g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0}
 
 		# 使用 ESC 键可以直接退出 leaderf 的 normal 模式
 		g:Lf_NormalMap = {
